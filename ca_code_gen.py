@@ -73,3 +73,13 @@ def lfsr(seed, taps):
                 feedback ^= bit
         state.insert(0, feedback)
         yield state.pop()
+
+
+# Output the first 10 C/A chips for each of the 32 SVs
+if __name__ == "__main__":
+    for sv_no in range(1, 33):
+        gen = ca_code_gen(sv_no)
+        chips = []
+        for i in range(10):
+            chips.append(next(gen))
+        print("SV PRN: {:>2}, first 10 chips: {}".format(sv_no, chips))
